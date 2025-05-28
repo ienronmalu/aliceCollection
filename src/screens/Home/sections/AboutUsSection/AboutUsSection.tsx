@@ -11,8 +11,8 @@ import {
   Sheet,
   SheetContent,
   SheetTrigger,
+  SheetTitle,
 } from "../../../../components/ui/sheet";
-import { SheetTitle } from "../../../../components/ui/sheet";
 
 export const AboutUsSection = (): JSX.Element => {
   const navigationItems = [
@@ -63,7 +63,7 @@ export const AboutUsSection = (): JSX.Element => {
             </Button>
           </SheetTrigger>
           <SheetContent className="bg-[#0d0402] border-[#e4d9d7] border-opacity-20">
-            <SheetTitle className="text-[#e4d9d7]">Navigation Menu</SheetTitle>
+            <SheetTitle className="text-[#e4d9d7]">Menu</SheetTitle>
             <nav className="flex flex-col gap-4 mt-8">
               {navigationItems.map((item, index) => (
                 <a
