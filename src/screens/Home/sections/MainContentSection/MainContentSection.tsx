@@ -4,9 +4,10 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import { Input } from "../../../../components/ui/input";
 
 export const MainContentSection = (): JSX.Element => {
-  const [selectedImages, setSelectedImages] = useState<[string, string]>([
+  const [selectedImages, setSelectedImages] = useState<[string, string, string]>([
     "..//a-vibrant-photograph-of-a-modern-art-installation-featuring-bold.png",
-    "..//a-vibrant-abstract-design-featuring-bold-colors-and-geometric-sh.png"
+    "..//a-vibrant-abstract-design-featuring-bold-colors-and-geometric-sh.png",
+    "..//a-professional-portrait-of-a-creative-individual-in-a-modern-wor.png"
   ]);
 
   const projects = [
@@ -103,7 +104,7 @@ export const MainContentSection = (): JSX.Element => {
   ];
 
   const handleImageClick = (image: string) => {
-    setSelectedImages(prev => [image, prev[0]]);
+    setSelectedImages(prev => [image, prev[0], prev[1]]);
   };
 
   return (
@@ -113,7 +114,10 @@ export const MainContentSection = (): JSX.Element => {
       <div className="flex flex-col items-start relative flex-1 grow z-[1] overflow-hidden w-full">
         <div className="flex flex-col md:flex-row items-start gap-[50px] px-0 py-7 relative self-stretch w-full flex-[0_0_auto] z-[1] bg-[#0d0402]">
           {selectedImages.map((image, index) => (
-            <Card key={index} className={`${index === 1 ? 'hidden md:flex' : 'flex'} flex-1 grow h-[400px] md:h-[668px] rounded-2xl border-[1.5px] border-solid border-transparent overflow-hidden w-full`}>
+            <Card 
+              key={index} 
+              className={`${index > 0 ? 'hidden md:flex' : 'flex'} flex-1 grow h-[400px] md:h-[668px] rounded-2xl border-[1.5px] border-solid border-transparent overflow-hidden w-full`}
+            >
               <CardContent className="p-0 h-full">
                 <div 
                   className="w-full h-full bg-cover bg-center transition-all duration-300"
