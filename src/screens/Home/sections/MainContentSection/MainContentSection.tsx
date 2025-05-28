@@ -4,9 +4,10 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import { Input } from "../../../../components/ui/input";
 
 export const MainContentSection = (): JSX.Element => {
-  const [selectedImage, setSelectedImage] = useState<string>(
-    "..//a-vibrant-photograph-of-a-modern-art-installation-featuring-bold.png"
-  );
+  const [selectedImages, setSelectedImages] = useState<[string, string]>([
+    "..//a-vibrant-photograph-of-a-modern-art-installation-featuring-bold.png",
+    "..//a-vibrant-abstract-design-featuring-bold-colors-and-geometric-sh.png"
+  ]);
 
   const projects = [
     {
@@ -102,21 +103,25 @@ export const MainContentSection = (): JSX.Element => {
   ];
 
   const handleImageClick = (image: string) => {
-    setSelectedImage(image);
+    setSelectedImages(prev => [image, prev[0]]);
   };
 
   return (
-    <section className="flex flex-col items-start gap-12 relative self-stretch w-full flex-[0_0_auto] z-[1]">
+    <section className="flex flex-col md:flex-row items-start gap-12 relative self-stretch w-full flex-[0_0_auto] z-[1]">
+      <div className="relative w-[120px] h-[200px] top-[724px] left-[856px] z-[2] [background:linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,1)_100%)] hidden md:block" />
+
       <div className="flex flex-col items-start relative flex-1 grow z-[1] overflow-hidden w-full">
-        <div className="flex flex-col items-start gap-[50px] px-0 py-7 relative self-stretch w-full flex-[0_0_auto] z-[1] bg-[#0d0402]">
-          <Card className="w-full h-[400px] md:h-[668px] rounded-2xl border-[1.5px] border-solid border-transparent overflow-hidden">
-            <CardContent className="p-0 h-full">
-              <div 
-                className="w-full h-full bg-cover bg-center transition-all duration-300"
-                style={{ backgroundImage: `url(${selectedImage})` }}
-              />
-            </CardContent>
-          </Card>
+        <div className="flex flex-col md:flex-row items-start gap-[50px] px-0 py-7 relative self-stretch w-full flex-[0_0_auto] z-[1] bg-[#0d0402]">
+          {selectedImages.map((image, index) => (
+            <Card key={index} className={`${index === 1 ? 'hidden md:flex' : 'flex'} flex-1 grow h-[400px] md:h-[668px] rounded-2xl border-[1.5px] border-solid border-transparent overflow-hidden w-full`}>
+              <CardContent className="p-0 h-full">
+                <div 
+                  className="w-full h-full bg-cover bg-center transition-all duration-300"
+                  style={{ backgroundImage: `url(${image})` }}
+                />
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
         <div className="flex items-start gap-5 relative z-0 overflow-x-auto bg-[#0d0402] pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent w-full">
@@ -148,7 +153,7 @@ export const MainContentSection = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="flex flex-col w-full items-start pt-7 pb-0 px-0 relative z-0">
+      <div className="flex flex-col w-full md:w-80 items-start pt-7 pb-0 px-0 relative z-0">
         <Card className="flex flex-col items-start gap-5 p-[30px] relative self-stretch w-full flex-[0_0_auto] z-[1] rounded-2xl overflow-hidden [background:linear-gradient(112deg,rgba(211,247,154,1)_0%,rgba(165,242,197,1)_100%)] border-none">
           <CardContent className="p-0 space-y-5">
             <h1 className="mt-[-1.50px] font-bold text-[#273136] text-4xl tracking-[-1.28px] leading-tight relative [font-family:'Roboto_Serif',Helvetica]">
