@@ -4,12 +4,12 @@ import { Card, CardContent } from "../../../../components/ui/card";
 import { Input } from "../../../../components/ui/input";
 
 export const MainContentSection = (): JSX.Element => {
-  const [selectedImages, setSelectedImages] = useState<[string, string, string]>([
+  const [selectedImages, setSelectedImages] = useState<[string, string]>([
     "..//a-vibrant-photograph-of-a-modern-art-installation-featuring-bold.png",
-    "..//a-vibrant-abstract-design-featuring-bold-colors-and-geometric-sh.png",
-    "..//a-professional-portrait-of-a-creative-individual-in-a-modern-wor.png"
+    "..//a-vibrant-abstract-design-featuring-bold-colors-and-geometric-sh.png"
   ]);
 
+  // Project data for mapping
   const projects = [
     {
       id: 1,
@@ -104,44 +104,28 @@ export const MainContentSection = (): JSX.Element => {
   ];
 
   const handleImageClick = (image: string) => {
-    setSelectedImages(prev => [image, prev[0], prev[1]]);
+    setSelectedImages(prev => [image, prev[0]]);
   };
 
   return (
-    <section className="flex flex-col md:flex-row items-start gap-12 relative self-stretch w-full flex-[0_0_auto] z-[1]">
-      <div className="relative w-[120px] h-[200px] top-[724px] left-[856px] z-[2] [background:linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,1)_100%)] hidden md:block" />
+    <section className="flex items-start gap-12 relative self-stretch w-full flex-[0_0_auto] z-[1]">
+      <div className="relative w-[120px] h-[200px] top-[724px] left-[856px] z-[2] [background:linear-gradient(90deg,rgba(0,0,0,0)_0%,rgba(0,0,0,1)_100%)]" />
 
-      <div className="flex flex-col items-start relative flex-1 grow z-[1] overflow-hidden w-full">
-        <div className="flex flex-col items-start gap-[50px] px-0 py-7 relative self-stretch w-full flex-[0_0_auto] z-[1] bg-[#0d0402]">
-          {/* Main large image */}
-          <Card className="flex flex-1 grow h-[400px] md:h-[668px] rounded-2xl border-[1.5px] border-solid border-transparent overflow-hidden w-full">
-            <CardContent className="p-0 h-full">
-              <div 
-                className="w-full h-full bg-cover bg-center transition-all duration-300"
-                style={{ backgroundImage: `url(${selectedImages[0]})` }}
-              />
-            </CardContent>
-          </Card>
-          
-          {/* Secondary images row - visible on both mobile and desktop */}
-          <div className="flex flex-row gap-[50px] w-full">
-            {selectedImages.slice(1).map((image, index) => (
-              <Card 
-                key={index}
-                className="flex flex-1 h-[200px] md:h-[668px] rounded-2xl border-[1.5px] border-solid border-transparent overflow-hidden"
-              >
-                <CardContent className="p-0 h-full">
-                  <div 
-                    className="w-full h-full bg-cover bg-center transition-all duration-300"
-                    style={{ backgroundImage: `url(${image})` }}
-                  />
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+      <div className="flex flex-col items-start relative flex-1 grow z-[1] overflow-hidden">
+        <div className="flex items-start gap-[50px] px-0 py-7 relative self-stretch w-full flex-[0_0_auto] z-[1] bg-[#0d0402]">
+          {selectedImages.map((image, index) => (
+            <Card key={index} className="flex-1 grow h-[668px] rounded-2xl border-[1.5px] border-solid border-transparent overflow-hidden">
+              <CardContent className="p-0 h-full">
+                <div 
+                  className="w-full h-full bg-cover bg-center transition-all duration-300"
+                  style={{ backgroundImage: `url(${image})` }}
+                />
+              </CardContent>
+            </Card>
+          ))}
         </div>
 
-        <div className="flex items-start gap-5 relative z-0 overflow-x-auto bg-[#0d0402] pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent w-full">
+        <div className="flex items-start gap-5 relative z-0 overflow-x-auto bg-[#0d0402] pb-4 scrollbar-thin scrollbar-thumb-gray-600 scrollbar-track-transparent">
           <div className="inline-flex items-start gap-5 relative flex-[0_0_auto] bg-[#0d0402] px-4">
             {projects.map((project) => (
               <Card
@@ -170,28 +154,43 @@ export const MainContentSection = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="flex flex-col w-full md:w-80 items-start pt-7 pb-0 px-0 relative z-0">
+      <div className="flex flex-col w-80 items-start pt-7 pb-0 px-0 relative z-0">
         <Card className="flex flex-col items-start gap-5 p-[30px] relative self-stretch w-full flex-[0_0_auto] z-[1] rounded-2xl overflow-hidden [background:linear-gradient(112deg,rgba(211,247,154,1)_0%,rgba(165,242,197,1)_100%)] border-none">
           <CardContent className="p-0 space-y-5">
             <h1 className="mt-[-1.50px] font-bold text-[#273136] text-4xl tracking-[-1.28px] leading-tight relative [font-family:'Roboto_Serif',Helvetica]">
-              Leichtfried is a creative studio focused on innovation.
+              Leichtfried is a creative studio specializing in
             </h1>
 
             <h2 className="relative [font-family:'Roboto_Serif',Helvetica] font-bold text-[#273136] text-2xl tracking-[-0.68px] leading-normal">
-              With a passion for design and innovation, we bring ideas to life through engaging visuals.
+              visual storytelling. With a passion for design and innovation, we
+              bring ideas to life through compelling visuals.
             </h2>
 
             <p className="font-medium text-[#273136] text-lg tracking-[-0.48px] leading-relaxed relative [font-family:'Roboto_Serif',Helvetica]">
-              Leichtfried is a creative studio focused on visual storytelling. We are passionate about design and innovation, bringing ideas to life through engaging visuals.
+              Leichtfried is a creative studio specializing in visual
+              storytelling. With a passion for design and innovation, we bring
+              ideas to life through compelling visuals.
             </p>
 
-            <div className="relative self-stretch w-full h-[400px] md:h-[810px] rounded-2xl border-[1.5px] border-solid border-transparent bg-cover bg-center" style={{ backgroundImage: "url(..//a-professional-portrait-of-a-creative-individual-in-a-modern-wor.png)" }} />
+            <h1 className="font-bold text-[#273136] text-4xl tracking-[-1.28px] leading-tight relative [font-family:'Roboto_Serif',Helvetica]">
+              Leichtfried是一家專注於創意的工作室。
+            </h1>
+
+            <h2 className="relative [font-family:'Roboto_Serif',Helvetica] font-bold text-[#273136] text-2xl tracking-[-0.68px] leading-normal">
+              憑藉對設計和創新的熱情，我們通過引人入勝的視覺效果將想法變為現實。
+            </h2>
+
+            <p className="font-medium text-[#273136] text-lg tracking-[-0.48px] leading-relaxed relative [font-family:'Roboto_Serif',Helvetica]">
+              Leichtfried是一家專注於視覺敘事的創意工作室。我們對設計和創新充滿熱情，通過引人入勝的視覺效果將想法變為現實。
+            </p>
+
+            <div className="relative self-stretch w-full h-[810px] rounded-2xl border-[1.5px] border-solid border-transparent bg-cover bg-center" style={{ backgroundImage: "url(..//a-professional-portrait-of-a-creative-individual-in-a-modern-wor.png)" }} />
           </CardContent>
         </Card>
 
         <div className="flex flex-col items-center justify-center gap-[50px] px-0 py-24 relative self-stretch w-full flex-[0_0_auto] z-0 bg-[#0d0402]">
           <h2 className="relative w-fit mt-[-1.50px] [font-family:'Roboto_Serif',Helvetica] font-bold text-[#e4d9d7] text-[34px] text-center tracking-[-0.68px] leading-10 whitespace-nowrap">
-            Contact Me
+            Connect with me
           </h2>
 
           <div className="flex items-start gap-3 relative w-full">
